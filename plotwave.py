@@ -30,9 +30,10 @@ def echelle(freq, power, dnu, ax=None, sigma=None, nlevels=32, cmap='Greys', pow
 	if sigma is not None:
 		s_width = len(np.where(freq < sigma)[0])
 		s_power = gaussian_filter(t_power, sigma=s_width)
-		mat = np.reshape(s_power,(m,n))
 	else:
-		mat = np.reshape(t_power,(m,n))
+		s_power = t_power
+		
+	mat = np.reshape(s_power,(m,n))
 
 	if power_norm: 
 		s_power -= min(s_power)
